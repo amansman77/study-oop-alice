@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("음료수는 행동합니다.")
+@DisplayName("음료수는 행동한다.")
 public class BeverageTests {
 
     @Test

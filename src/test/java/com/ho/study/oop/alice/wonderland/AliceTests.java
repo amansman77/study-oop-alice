@@ -6,11 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("앨리스는 행동합니다.")
+@DisplayName("앨리스는 행동한다.")
 public class AliceTests {
 
     @Nested
-    @DisplayName("앨리스는 음료수를 마십니다.")
+    @DisplayName("앨리스는 음료수를 마신다.")
     class testDrinkBeverage {
         
         @Test
@@ -53,7 +53,7 @@ public class AliceTests {
     }
 
     @Nested
-    @DisplayName("앨리스는 케이크를 먹습니다.")
+    @DisplayName("앨리스는 케이크를 먹는다.")
     class testEatCake {
         @Test
         @DisplayName("키가 130센치미터인 앨리스가 케이크를 먹으면 280센치미터가 된다.")
@@ -80,6 +80,38 @@ public class AliceTests {
             alice.eatCake();
 
             assertEquals(50, alice.getHeight());
+        }
+    }
+
+    @Nested
+    @DisplayName("앨리스는 부채질을 한다.")
+    class testFanning {
+
+        @Test
+        @DisplayName("키가 130센치미터인 앨리스가 부채질을 하면 110센치미터가 된다.")
+        void testFanning()  {
+            Alice alice = new Alice(130);
+            alice.fanning();
+
+            assertEquals(110, alice.getHeight());
+        }
+
+        @Test
+        @DisplayName("키가 100센치미터인 앨리스가 부채질을 하면 80센치미터가 된다.")
+        void testFanning2() {
+            Alice alice = new Alice(100);
+            alice.fanning();
+
+            assertEquals(80, alice.getHeight());
+        }
+
+        @Test
+        @DisplayName("부채질을 계속해도 앨리스의 키는 1센치미터보다 작아지지 않는다.")
+        void testFanning3() {
+            Alice alice = new Alice(19);
+            alice.fanning();
+
+            assertEquals(1, alice.getHeight());
         }
     }
 }

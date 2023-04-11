@@ -6,6 +6,8 @@ public class Alice {
     private static final Integer QUANTITY_OF_DRINK_ONCE = 106;
 
     private static final Integer QUANTITY_OF_HEIGHT_AFTER_EAT_CAKE = 150;
+    
+    private static final Integer QUANTITY_OF_FANNING_ONCE = 20;
 
     private Integer height;
     private Beverage beverage;
@@ -50,6 +52,14 @@ public class Alice {
         Boolean isEaten = this.cake.eaten();
         if (isEaten) {
             this.height += QUANTITY_OF_HEIGHT_AFTER_EAT_CAKE;
+        }
+    }
+
+    public void fanning() {
+        if (this.height <= QUANTITY_OF_FANNING_ONCE) {
+            this.height = 1;
+        } else {
+            this.height -= QUANTITY_OF_FANNING_ONCE;
         }
     }
 
