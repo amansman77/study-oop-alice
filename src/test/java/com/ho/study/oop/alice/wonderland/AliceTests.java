@@ -164,4 +164,27 @@ public class AliceTests {
             assertEquals(50, alice.getHeight());
         }
     }
+
+    @Nested
+    @DisplayName("앨리스는 문을 통과한다.")
+    class passDoor {
+
+        @Test
+        @DisplayName("키가 40센치미터인 앨리스는 문을 통과한다.")
+        void passDoor() {
+            Alice alice = new Alice(40);
+            alice.passDoor();
+
+            assertEquals(AlicePosition.GARDEN, alice.getPosition());
+        }
+
+        @Test
+        @DisplayName("키가 130센치미터인 앨리스는 문을 통과하지 못한다.")
+        void passDoor2() {
+            Alice alice = new Alice(130);
+            alice.passDoor();
+
+            assertEquals(AlicePosition.PATH, alice.getPosition());
+        }
+    }
 }

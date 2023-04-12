@@ -9,12 +9,15 @@ public class Alice {
     private static final Integer QUANTITY_OF_EAT_MUSHROOM_ONCE = 10;
 
     private Integer height;
+    private AlicePosition position;
+
     private Beverage beverage;
     private Cake cake;
     private MixMushroom mushroom;
+    private Door door;
 
     public Alice(Integer height) {
-        this(height, new Beverage(QUANTITY_OF_DRINK_INIT), new Cake(), new MixMushroom());
+        this(height, new Beverage(QUANTITY_OF_DRINK_INIT), new Cake(), new MixMushroom(), new Door());
     }
 
     public Alice(Integer height, Beverage beverage) {
@@ -26,12 +29,19 @@ public class Alice {
     }
 
     public Alice(Integer height, Beverage beverage, Cake cake, MixMushroom mushroom) {
+        this(height, beverage, cake, mushroom, new Door());
+    }
+
+    public Alice(Integer height, Beverage beverage, Cake cake, MixMushroom mushroom, Door door) {
         this.height = height;
+        this.position = AlicePosition.PATH;
+
         this.beverage = beverage;
         this.cake = cake;
         this.mushroom = mushroom;
+        this.door = door;
     }
-
+    
     public Alice(Integer height, Cake cake) {
         this(height, new Beverage(QUANTITY_OF_DRINK_INIT), cake);
     }
@@ -78,6 +88,17 @@ public class Alice {
         if (isEaten) {
             this.height = mushroomKind.grow(this.height, QUANTITY_OF_EAT_MUSHROOM_ONCE);
         }
+    }
+
+    public void passDoor() {
+        Boolean isAccept = this.door.accept(this.height);
+        if (isAccept) {
+            this.position = AlicePosition.GARDEN;
+        }
+    }
+
+    public AlicePosition getPosition() {
+        return this.position;
     }
 
 }
