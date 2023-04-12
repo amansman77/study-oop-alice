@@ -4,17 +4,17 @@ public class Alice {
 
     private static final Integer QUANTITY_OF_DRINK_INIT = 5000;
     private static final Integer QUANTITY_OF_DRINK_ONCE = 106;
-
-    private static final Integer QUANTITY_OF_HEIGHT_AFTER_EAT_CAKE = 150;
-    
+    private static final Integer QUANTITY_OF_EAT_CAKE_ONCE = 150;
     private static final Integer QUANTITY_OF_FANNING_ONCE = 20;
+    private static final Integer QUANTITY_OF_EAT_MUSHROOM_ONCE = 10;
 
     private Integer height;
     private Beverage beverage;
     private Cake cake;
+    private MixMushroom mushroom;
 
     public Alice(Integer height) {
-        this(height, new Beverage(QUANTITY_OF_DRINK_INIT), new Cake());
+        this(height, new Beverage(QUANTITY_OF_DRINK_INIT), new Cake(), new MixMushroom());
     }
 
     public Alice(Integer height, Beverage beverage) {
@@ -22,13 +22,22 @@ public class Alice {
     }
 
     public Alice(Integer height, Beverage beverage, Cake cake) {
+        this(height, beverage, cake, new MixMushroom());
+    }
+
+    public Alice(Integer height, Beverage beverage, Cake cake, MixMushroom mushroom) {
         this.height = height;
         this.beverage = beverage;
         this.cake = cake;
+        this.mushroom = mushroom;
     }
 
     public Alice(Integer height, Cake cake) {
         this(height, new Beverage(QUANTITY_OF_DRINK_INIT), cake);
+    }
+
+    public Alice(Integer height, MixMushroom mushroom) {
+        this(height, new Beverage(QUANTITY_OF_DRINK_INIT), new Cake(), mushroom);
     }
 
     public void drinkBeverage() {
@@ -51,7 +60,7 @@ public class Alice {
     public void eatCake() {
         Boolean isEaten = this.cake.eaten();
         if (isEaten) {
-            this.height += QUANTITY_OF_HEIGHT_AFTER_EAT_CAKE;
+            this.height += QUANTITY_OF_EAT_CAKE_ONCE;
         }
     }
 
@@ -60,6 +69,14 @@ public class Alice {
             this.height = 1;
         } else {
             this.height -= QUANTITY_OF_FANNING_ONCE;
+        }
+    }
+
+    public void eatMushroom(MushroomKind mushroomKind) {
+        Mushroom mushroom = mushroomKind.getParts(this.mushroom);
+        Boolean isEaten = mushroom.eaten();
+        if (isEaten) {
+            this.height = mushroomKind.grow(this.height, QUANTITY_OF_EAT_MUSHROOM_ONCE);
         }
     }
 

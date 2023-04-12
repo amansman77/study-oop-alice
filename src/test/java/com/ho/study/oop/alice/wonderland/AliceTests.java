@@ -114,4 +114,54 @@ public class AliceTests {
             assertEquals(1, alice.getHeight());
         }
     }
+
+    @Nested
+    @DisplayName("앨리스는 버섯을 먹는다.")
+    class testEatMushroom {
+
+        @Test
+        @DisplayName("키가 130센치미터인 앨리스가 버섯의 붉은색 부분을 먹으면 140센치미터가 된다.")
+        void testEatMushroom() {
+            Alice alice = new Alice(130);
+            alice.eatMushroom(MushroomKind.RED);
+
+            assertEquals(140, alice.getHeight());
+        }
+
+        @Test
+        @DisplayName("키가 50센치미터인 앨리스가 버섯의 붉은색 부분을 먹으면 60센치미터가 된다.")
+        void testEarMushroom2() {
+            Alice alice = new Alice(50);
+            alice.eatMushroom(MushroomKind.RED);
+
+            assertEquals(60, alice.getHeight());
+        }
+
+        @Test
+        @DisplayName("버섯의 붉은색 부분을 못 먹는다.")
+        void testEarMushroom3() {
+            Alice alice = new Alice(50, new MixMushroom(0, 0));
+            alice.eatMushroom(MushroomKind.RED);
+
+            assertEquals(50, alice.getHeight());
+        }
+
+        @Test
+        @DisplayName("키가 130센치미터인 앨리스가 버섯의 푸른색 부분을 먹으면 120센치미터가 된다.")
+        void testEatMushroom4() {
+            Alice alice = new Alice(130);
+            alice.eatMushroom(MushroomKind.BLUE);
+
+            assertEquals(120, alice.getHeight());
+        }
+
+        @Test
+        @DisplayName("버섯의 푸른색 부분을 못 먹는다.")
+        void testEarMushroom5() {
+            Alice alice = new Alice(50, new MixMushroom(0, 0));
+            alice.eatMushroom(MushroomKind.BLUE);
+
+            assertEquals(50, alice.getHeight());
+        }
+    }
 }
